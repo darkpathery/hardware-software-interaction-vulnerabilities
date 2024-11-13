@@ -17,12 +17,16 @@ The layers are stacked in a way that represents multiple binary rows, creating a
 # Example of Stacked Binary Data
 
 Layer 1:  010101
+
 Layer 2:  110011
+
 Layer 3:  001100
-.......................
+
 
 Layer 4:  101010
+
 Layer 5:  010010
+
 Layer 6:  111000
 
 in this example:
