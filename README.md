@@ -19,9 +19,13 @@ The layers are stacked in a way that represents multiple binary rows, creating a
 Layer 1:  010101
 Layer 2:  110011
 Layer 3:  001100
----------------------
+.......................
+
 Layer 4:  101010
-Layer 5:  010010In this example:
+Layer 5:  010010
+Layer 6:  111000
+
+in this example:
 
 * Layer 1 to Layer 3 represent the first set of binary data.
 * Layer 4 to Layer 6 represent the second set of binary data.
