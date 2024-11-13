@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <sys/sysinfo.h>
 
-// Function to generate a simple repeating binary pattern
+// Function to generate a simple repeating binary pattern (Simple Shape: Alternating 1s and 0s)
 void generate_simple_shape(char *layer, int size) {
     for (int i = 0; i < size; i++) {
         layer[i] = (i % 2 == 0) ? '1' : '0';  // Alternating 1s and 0s
@@ -13,10 +13,23 @@ void generate_simple_shape(char *layer, int size) {
     layer[size] = '\0';
 }
 
-// Function to generate a complex pseudo-random binary pattern
+// Function to generate a complex pseudo-random binary pattern (Complex Shape: Random 1s and 0s)
 void generate_complex_shape(char *layer, int size) {
     for (int i = 0; i < size; i++) {
         layer[i] = (rand() % 2) ? '1' : '0';  // Random 1s and 0s
+    }
+    layer[size] = '\0';
+}
+
+// Function to generate a circular binary pattern (for higher-spec systems)
+void generate_circle_shape(char *layer, int size) {
+    for (int i = 0; i < size; i++) {
+        // Create a circle-like pattern by alternating sections
+        if (i < size / 4 || (i >= size / 2 && i < 3 * size / 4)) {
+            layer[i] = '1';
+        } else {
+            layer[i] = '0';
+        }
     }
     layer[size] = '\0';
 }
@@ -30,11 +43,13 @@ void stress_system(int layers, int size, int complexity) {
     }
 
     for (int i = 0; i < layers; i++) {
-        // Generate binary layer based on complexity
+        // Generate binary layer based on complexity and shape
         if (complexity == 0) {
             generate_simple_shape(layer, size);  // Simpler shape for low-spec systems
-        } else {
+        } else if (complexity == 1) {
             generate_complex_shape(layer, size);  // More complex shape for high-spec systems
+        } else {
+            generate_circle_shape(layer, size);  // Circle shape for very high-spec systems
         }
 
         // Simulate an operation: converting binary string to integer and squaring it
@@ -76,7 +91,7 @@ void adjust_stress_based_on_specs(int cpu_cores, long memory, int *layers, int *
     } else {  // High-spec machine (e.g., > 8GB RAM)
         *layers = 150;
         *size = 3000;
-        *complexity = 1;  // Complex shape
+        *complexity = 2;  // Complex shape (circle shape for very high-spec systems)
     }
 }
 
@@ -101,4 +116,3 @@ int main() {
 
     return 0;
 }
-
